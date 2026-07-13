@@ -28,8 +28,8 @@ export class Hero implements OnInit, OnDestroy {
   public temperEvar: number = 0;
   public temperEvarMin: number = 0;
   public temperEvarMax: number = 0;
-  public minTemperature: number = 22;
-  public maxTemperature: number = 35;
+  public minTemperature: number = 0;
+  public maxTemperature: number = 0;
   public rain: number = 0;
   public rainTomorr: number = 0;
   public windSpeedTomorr: number = 0;
@@ -41,8 +41,8 @@ export class Hero implements OnInit, OnDestroy {
   public forecastWeekly: any[] = [];
   public clickDay: any[] = [];
   public termoIcon: string[] = [
-    '/free-icon-thermometer-1164915.png', 
-    '/free-icon-thermometer-1164913.png'
+    'free-icon-thermometer-1164915.png', 
+    'free-icon-thermometer-1164913.png'
   ];
 
   private _timerId: any;
@@ -164,7 +164,7 @@ export class Hero implements OnInit, OnDestroy {
 
   public async weatherDataNow(city: string): Promise<any> {
     try {
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this._API_KEY}&units=metric`)
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this._API_KEY}&units=metric`);
       if (!response.ok) return;
       const data = await response.json();
       return data;

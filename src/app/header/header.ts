@@ -22,10 +22,10 @@ export class Header {
   public time$: Observable<string> = this._weatherTransfer.time$;
 
 
-  public iconTemp: string = '/free-icon-celsius-3506013.png';
+  public iconTemp: string = './free-icon-celsius-3506013.png';
   public iconSunMoon: string[] = [
-    '/free-icon-sun-5497397.png',
-    '/free-icon-moon-867904.png'
+    './free-icon-sun-5497397.png',
+    './free-icon-moon-867904.png'
   ];
 
   addInput() {
@@ -38,9 +38,9 @@ export class Header {
     this._weatherTransfer.formTemp(this.farAndCel);
 
     if (this.farAndCel) {
-      this.iconTemp = '/free-icon-fahrenheit-degrees-3506023.png';
+      this.iconTemp = 'free-icon-fahrenheit-degrees-3506023.png';
     } else {
-      this.iconTemp = '/free-icon-celsius-3506013.png';
+      this.iconTemp = 'free-icon-celsius-3506013.png';
     }
   }
 
