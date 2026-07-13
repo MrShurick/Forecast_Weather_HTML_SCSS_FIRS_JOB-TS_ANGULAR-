@@ -1,0 +1,324 @@
+<div class="heroMain">
+
+    <div 
+        class="thisCity"
+        [style.backgroundImage]="'url(' + cityThis + ')'"
+    >
+        <div class="infoBlockOne">
+
+            <div class="cityDataTime">
+                <div class="infoCity">
+                    <h3>
+                        {{currentCity}}
+                    </h3>
+                    <div class="dayTime">
+                        <p>
+                            {{currentDate | date: 'EEEE, MMMM dd'}}
+                        </p>
+                        <p>
+                            {{currentDate | date: 'HH:mm:ss'}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weatherInfo">
+                <div class="rain rainWindInfo">
+                    <img src="\free-icon-rain-8722129.png" alt="" width="64px">
+                    <p>
+                        Rain: {{rain}}%
+                    </p>
+                </div>
+
+                <div class="winfSpeed rainWindInfo">
+                    <img src="\free-icon-wind-7349389.png" alt="" width="64px">
+                    <p>
+                        Wind: {{windSpeed}}km/h
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="infoBlockTwo">
+            <div class="head">
+                <p>
+                    {{whenDay}}
+                </p>
+            </div>
+
+            <div class="temperInfo">
+                <img [src]="imgPeriodDay" alt="" width="192px">
+
+                <div class="mainTemp">
+                    <img [src]="flagTemp ? termoIcon[0] : termoIcon[1]" alt="">
+                    <h3>
+                        {{flagTemp ? (temper | number: '1.0-0'): (temper * 9/5 + 32 | number: '1.0-0')}} 
+                        <sup>{{flagTemp ?'℃' : '℉'}}</sup>
+                    </h3>
+                </div>
+                
+                <p>
+                    {{flagTemp ? (minTemperature | number: '1.0-0') : (minTemperature * 9/5 + 32 | number: '1.0-0')}} 
+                    <sup>{{flagTemp ?'℃' : '℉'}}</sup> - 
+                    {{flagTemp ? (maxTemperature | number: '1.0-0') : (maxTemperature * 9/5 + 32 | number: '1.0-0')}}
+                    <sup>{{flagTemp ?'℃' : '℉'}}</sup>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="todayWeekly">
+
+        <div class="headtodWeek">
+            <button 
+                type="button" 
+                class="btnTdWeek"
+                (click)="todayWeeklyFlag(false)"
+                [class.activeTdWeek]="forecastFlag"
+                [style.color]="forecastFlag ? 'rgba(212, 212, 212, 0.985)' : '#afa4ff'"
+                >
+                Today
+            </button>
+
+            <button 
+                type="button" 
+                class="btnTdWeek"
+                (click)="todayWeeklyFlag(true)"
+                [class.activeTdWeek]="!forecastFlag"
+                [style.color]="!forecastFlag ? 'rgba(212, 212, 212, 0.985)' : '#afa4ff'"
+                >
+                Weekly
+            </button>
+        </div>
+
+        <div class="weatherCard">
+            @for (item of forecastToday; track item.dt) {
+                    <div class="cardToday" [class.activeTd]="!forecastFlag">
+                        <div class="todayImg">
+                            <img [src]="'https://openweathermap.org/img/wn/' + item.weather[0].icon + '@2x.png'" alt="" width="156">
+                        </div>
+
+                        <div class="discTime">
+                            <p>
+                                {{item.weather[0].main}}
+                            </p>
+
+                            <p class="pTime">
+                                {{item.dt_txt.split(' ')[1].slice(0, -3)}}PM
+                            </p>
+                        </div>
+
+                        <div class="temperToday">
+                            <div class="mainTemp">
+                                <img [src]="flagTemp ? termoIcon[0] : termoIcon[1]" alt="" width="32">
+                                <h3>
+                                    {{flagTemp ? (item.main.temp_max | number:'1.0-0') : (item.main.temp_max * 9/5 +32 | number:'1.0-0')}}{{flagTemp ?'℃' : '℉'}}
+                                </h3>
+                            </div>
+
+                            <p>
+                                {{flagTemp ? (item.main.temp_min | number:'1.0-0' ): (item.main.temp_min * 9/5 +32 | number:'1.0-0')}}{{flagTemp ?'℃' : '℉'}}
+                            </p>
+                        </div>
+
+                        <div class="weatherTodayInfo">
+                            <div class="rain rainWindInfoCard">
+                                <img src="\free-icon-rain-8722129.png" alt="" width="32">
+                                <p>
+                                    {{item?.rain?.['3h'] ? item?.rain?.['3h'] * 100 : 0}}%
+                                </p>
+                            </div>
+
+                            <div class="winfSpeed rainWindInfoCard">
+                                <img src="\free-icon-wind-7349389.png" alt="" width="32">
+                                <p>
+                                    {{item.wind.speed}}km/h
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="sesc">
+                            <p>
+                                {{item.weather[0].description}}
+                            </p>
+                        </div>
+                    </div>
+                }
+
+            @for (item of forecastWeekly; track item.date) {
+                <div 
+                    class="cardWeekly"
+                    (click)="moreInfoDay(item.date, true)"
+                    [class.activeWeek]="forecastFlag" 
+                    [class.active]="moreInfoFlag"
+                >
+                    <img [src]="'https://openweathermap.org/img/wn/' + item.icon + '@2x.png'" alt="" width="128">
+
+                    <p>
+                        {{item.date | date: 'EE, MMMM dd'}}
+                    </p>
+
+                    <p class="weeklyTemp">
+                        {{flagTemp ? (item.temp | number: '1.0-0') : (item.temp * 9/5 + 32 | number: '1.0-0')}}{{flagTemp ?'℃' : '℉'}}
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div 
+        class="modal-backdrop" 
+        [class.active]="moreInfoFlag" 
+        (click)="backMoreInfo()"
+    ></div>
+
+    <div 
+        class="moreInfoDay"
+        [style.backgroundImage]="'url(' + cityThis + ')'"
+        [class.active]="moreInfoFlag"
+    >
+        <div class="headClose">
+            <button 
+                type="button"
+                (click)="backMoreInfo()"
+                >
+                <img src="/free-icon-back-arrow-11997278.png" alt="" width="36px">
+                </button>
+        </div>
+
+        <div class="infoBlockOne infoBlockOneTomorr">
+
+            <div class="cityDataTime ">
+                <div class="infoCity">
+                    <h3>
+                        {{currentCity}}
+                    </h3>
+                    <div class="dayTime">
+                        <p>
+                            {{currentDate | date: 'EEEE, MMMM dd'}}
+                        </p>
+                        <p>
+                            {{currentDate | date: 'HH:mm:ss'}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weatherInfo">
+                <div class="rain rainWindInfo">
+                    <img src="\free-icon-rain-8722129.png" alt="" width="32px">
+                    <p>
+                        Rain: {{rainTomorr}}%
+                    </p>
+                </div>
+
+                <div class="winfSpeed rainWindInfo">
+                    <img src="\free-icon-wind-7349389.png" alt="" width="32px">
+                    <p>
+                        Wind: {{windSpeedTomorr}}km/h
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="infoBlockTwo infoBlockTwotomorr">
+            <div class="head">
+                <p>
+                    {{dateMoreTomorr | date: 'EEEE dd'}}
+                </p>
+            </div>
+
+            <div class="temperInfo">
+                <img [src]="imgPeriodDay" alt="" width="96px">
+
+                <div class="mainTemp">
+                    <img [src]="flagTemp ? termoIcon[0] : termoIcon[1]" alt="" width="48">
+                    <h3>
+                        {{flagTemp ? (temperEvar | number:'1.0-0') : (temperEvar * 9/5 + 32 | number:'1.0-0')}} 
+                        <sup>{{flagTemp ?'℃' : '℉'}}</sup>
+                    </h3>
+                </div>
+                        
+                <p>
+                    {{flagTemp ? (temperEvarMax | number:'1.0-0') : (temperEvarMax * 9/5 + 32 | number:'1.0-0')}} 
+                    <sup>{{flagTemp ?'℃' : '℉'}}</sup> - 
+                    {{flagTemp ? (temperEvarMin | number:'1.0-0') : (temperEvarMin * 9/5 + 32 | number:'1.0-0')}}
+                    <sup>{{flagTemp ?'℃' : '℉'}}</sup>
+                </p>
+            </div>
+        </div>
+
+        <div class="cardsTommorow">
+            @for (time of clickDay; track time.dt) {
+                <div class="cardThisDay">
+                    <div class="todayImg">
+                        <img [src]="'https://openweathermap.org/img/wn/' + time.weather[0].icon + '@2x.png'" alt="" width="96">
+                    </div>
+
+                    <div class="discTime">
+                        <p>
+                            {{time.weather[0].main}}
+                        </p>
+
+                        <p class="pTime">
+                            {{time.dt_txt.split(' ')[1].slice(0, -3)}}PM
+                        </p>
+                    </div>
+
+                    <div class="temperToday">
+                        <div class="mainTemp">
+                            <img [src]="flagTemp ? termoIcon[0] : termoIcon[1]" alt="" width="24">
+                            <h3>
+                                {{flagTemp ?(time.main.temp_max | number:'1.0-0') : (time.main.temp_max * 9/5 +32 | number:'1.0-0') }}{{flagTemp ?'℃' : '℉'}}
+                            </h3>
+                        </div>
+
+                        <p>
+                            {{flagTemp ? (time.main.temp_min | number:'1.0-0') : (time.main.temp_min * 9/5 +32 | number:'1.0-0') }}{{flagTemp ?'℃' : '℉'}}
+                        </p>
+                    </div>
+
+                    <div class="weatherTodayInfo">
+                        <div class="rain rainWindInfoCard">
+                            <img src="\free-icon-rain-8722129.png" alt="" width="24">
+                            <p>
+                                {{time?.rain?.['3h'] ? time?.rain?.['3h'] * 100 : 0}}%
+                            </p>
+                        </div>
+
+                        <div class="winfSpeed rainWindInfoCard">
+                            <img src="\free-icon-wind-7349389.png" alt="" width="24">
+                            <p>
+                                {{time.wind.speed}}km/h
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="sesc">
+                        <p>
+                            {{time.weather[0].description}}
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+        <div 
+            class="error404"
+            [class.active404]="errorFlag"
+            (click)="backError()"
+            >
+        </div>
+
+        <div 
+            class="textError" 
+            [ngClass]="errorStatus"
+            >
+            <img src="/free-icon-404-error-4826313.png" alt="" class="nlo404" width="428">
+            <h2>Місто не знайдено!</h2>
+        </div>
+
+</div>
+

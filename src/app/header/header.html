@@ -1,0 +1,61 @@
+<header>
+
+    <div class="logo">
+        <img src="logo.webp" alt="">
+    </div>
+
+    @if (!isInputActive) {
+        <nav class="navA">
+            <a href="">Home</a>
+            <a href="">New</a>
+            <a href="">Contact</a>
+            <a href="">Offer</a>
+        </nav>
+
+        <nav class="navButt">
+            <button 
+                type="button" 
+                class="buttImg"
+                (click)="fAndC()"
+            >
+                <img [src]="iconTemp" alt="" width="32px">
+            </button>
+
+            @if (time$ | async; as hours) {
+                <button type="button" class="buttImg sun-moon">
+                    <img [src]="(hours >= '21:00' && hours < '6:00') ? iconSunMoon[1] : iconSunMoon[0]" alt="" width="32px">
+                </button>
+            }
+
+            <button 
+                type="button" 
+                class="local"
+                (click)="addInput()"
+            >
+                <img src="/free-icon-locations-18879190.png" alt="" width="32px">
+                Location
+            </button>
+        </nav>
+    }
+
+    @if (isInputActive) {
+        <div class="inputSearch">
+            <input 
+                #inputCity
+                type="text" 
+                placeholder="Ім'я міста якого шукаєте"
+                (keyup.enter)="onSearch(inputCity.value);
+                    addInput()",
+                >
+            <button 
+                type="button"
+                class="buttonInput"
+                (click)="addInput();
+                    onSearch(inputCity.value)"
+            >
+            Search
+            </button>
+        </div>
+    }
+
+</header>
