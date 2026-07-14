@@ -126,3 +126,63 @@ header {
         }
     }
 }
+
+@media (max-width: 576px) {
+    header {
+        position: relative;
+        justify-content: center;
+        gap: 20%;
+        padding: 0.2rem;
+        background-color: rgba(204, 204, 204, 0.611);
+        backdrop-filter: blur(3px);
+
+        .navA {
+            gap: 50%;
+
+            a {
+                font-size: 0.5rem;
+            }
+        }
+
+        .logo img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 64px;
+        }
+
+        .navButt {
+            gap: 10%;
+
+            .buttImg img {
+                width: 12px;
+            }
+
+
+            .local {
+                padding: 0.1rem 0.2rem 0.3rem 0.1rem;
+                border-radius: 0.3rem;
+                font-size: 0.5rem;
+
+                img {
+                    width: 12px;
+                }
+            }
+        }
+
+        .inputSearch {
+            width: 50%;
+            gap: 1rem;
+
+            input {
+                padding: 0.1rem;
+                font-size: 0.5rem;
+            }
+
+            .buttonInput {
+                padding: 0.2rem 0.3rem 0.2rem 0.3rem;
+                font-size: 0.5rem;
+            }
+        }
+    }
+}

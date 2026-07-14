@@ -23,7 +23,7 @@
 
             @if (time$ | async; as hours) {
                 <button type="button" class="buttImg sun-moon">
-                    <img [src]="(hours >= '21:00' && hours < '6:00') ? iconSunMoon[1] : iconSunMoon[0]" alt="" width="32px">
+                    <img [src]="(hours >= '21:00' || hours <= '6:00') ? iconSunMoon[1] : iconSunMoon[0]" alt="" width="32px">
                 </button>
             }
 

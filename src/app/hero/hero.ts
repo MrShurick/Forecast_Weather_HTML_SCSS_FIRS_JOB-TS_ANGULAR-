@@ -1,5 +1,5 @@
-import { CommonModule} from '@angular/common';
-import { Component, ChangeDetectorRef, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT } from '@angular/core';
+import { CommonModule, isPlatformBrowser} from '@angular/common';
+import { Component, ChangeDetectorRef, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, PLATFORM_ID } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { WeatherTransfer } from '../weather-transfer';
 
@@ -56,6 +56,7 @@ export class Hero implements OnInit, OnDestroy {
     private _cdr: ChangeDetectorRef, 
     private _renderer: Renderer2, 
     @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private paltformId: Object,
     private _weatherTransfer: WeatherTransfer
   ) {}
 
@@ -80,6 +81,11 @@ export class Hero implements OnInit, OnDestroy {
 
     if (this.currentCity) this.updateData(this.currentCity);
     this.generateWeeklyForcast();
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', () => this.updateData(this.currentCity));
+    }
+    
   }
 
   public async updateData(city: string): Promise<void> {
@@ -107,10 +113,14 @@ export class Hero implements OnInit, OnDestroy {
         .reverse()
         .join('-');
 
+      let countCArd: number = 5;
+      
+      if (typeof window !== 'undefined' && window.innerWidth <= 576) countCArd = 4;
+
       this.forecastToday = this.forecastData.filter(item => {
         const date: string = item.dt_txt.split(' ')[0];
         return date === todayString;
-      }).slice(0, 5);
+      }).slice(0, countCArd);
 
       if (this.forecastToday.length === 0) {
         this.forecastToday = this.forecastToday.slice(0, 4);
@@ -217,7 +227,6 @@ export class Hero implements OnInit, OnDestroy {
     this.imgPeriodDay = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
     this.windSpeed = dataNow.wind.speed;
     this.rain = dataList[0].rain?.['3h'] ? dataList[0].rain?.['3h'] * 100 : 0;
-    console.log(this.temper)
   }
 
   public updateBg(data: any): void {
@@ -254,7 +263,6 @@ export class Hero implements OnInit, OnDestroy {
         .join('-');
 
       this.dateMoreTomorr = localDate;
-      console.log(this.forecastData)
 
       this.clickDay = this.forecastData.filter(day => {
         const dateDay = day.dt_txt.split(' ')[0];

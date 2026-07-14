@@ -723,3 +723,344 @@
         pointer-events: auto; 
     }
 }
+
+@media (max-width: 576px) {
+    .heroMain {
+        width: 100%;
+        height: 100vh;
+        gap: 0.5rem;
+
+        .thisCity {
+            gap: 25%;
+            color: white;
+            min-width: 95%;
+            min-height: 50vh;
+            margin-top: 0.5rem;
+
+            .infoBlockOne {
+                gap: 5rem;
+                margin: 0.5rem;
+                width: 100%;
+
+                .infoCity {
+                    text-align: center;
+
+                    h3 {
+                        font-size: 1.5rem;
+                    }
+
+                    .dayTime {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 0.5rem;
+                        font-size: 0.5rem;
+                    }
+                }
+
+                .weatherInfo {
+                    gap: 1rem;
+                    min-width: 100%;
+                    padding: 0.5rem;
+
+                    .rainWindInfo {
+                        gap: 10%;
+                        width: 100%;
+                        font-size: 1.15rem;
+
+                        img {
+                            width: 32px;
+                            padding: 0.1rem;
+                        }
+                    }
+                }
+
+                .weatherInfo .rainWindInfo {
+                    img {
+                        width: 24px;
+                    }
+
+                    p {
+                        font-size: 0.75rem;
+                    }
+                }
+            }
+
+            .infoBlockTwo {
+                margin: 1.5rem;
+                padding: 0.5rem;
+
+                .head p {
+                    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+                    font-size: 0.6rem;
+                }
+
+                .temperInfo {
+                    img {
+                        width: 126px;
+                    }
+
+                    p {
+                        font-size: 0.75rem;
+                    }
+
+                    .mainTemp { 
+                        h3 {
+                            font-size: 1.1rem;
+                        }
+
+                        img {
+                            width: 24px;
+                        }
+                    }
+                }    
+            }
+        }
+
+        .todayWeekly {
+            padding: 0.5rem;
+            gap: 0.5rem;
+            .headtodWeek .btnTdWeek {
+                padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+                font-size: 1rem;
+            }
+
+            .weatherCard {
+                gap: 1rem;
+                padding: 0.2rem;
+
+                .cardToday {
+                    flex: 0 0 5rem;
+                    min-width: 7.5rem;
+                    gap: 0.35rem;
+                    padding: 0.25rem;
+
+                    .todayImg img {
+                        width: 64px;
+                    }
+
+                    .discTime {
+                        gap: 10%;
+                        font-size: 0.5rem;
+
+                        p {
+                            text-align: center;
+                            padding: 0.35rem;
+                        }
+                    }
+
+                    .temperToday {
+                        gap: 10%;
+
+                        .mainTemp {
+
+                            img {
+                                width: 16px;
+                            }
+
+                            h3 {
+                                font-size: 1rem;
+                            }
+                        }
+
+                        p {
+                            font-size: 0.75rem;
+                        }
+                    }
+
+                    .weatherTodayInfo {
+                        gap: 25%;
+
+                        .rainWindInfoCard {
+                            gap: 10%;
+
+                            img {
+                                width: 16px;
+                            }
+
+                            p {
+                                font-size: 0.75rem;
+                            }
+                        }
+                    }
+
+                    .sesc {
+                        font-size: 0.75rem;
+                    }
+                }
+
+                .cardWeekly {
+                    padding: 0.5rem;
+                    gap: 0.5rem;
+
+                    p {
+                        font-size: 0.7rem;
+                    }
+
+                    .weeklyTemp {
+                        font-size: 1rem;
+                    }
+
+                    img {
+                        width: 64px;
+                    }
+                }
+            }
+        }
+
+        .moreInfoDay {
+            top: 5%;
+            padding: 0.5rem;
+            
+            .headClose button img {
+                width: 16px;
+            }
+
+            .infoBlockOneTomorr {
+                width: 75%;
+                gap: 1.5rem;
+                margin: 0.5rem;
+
+                .infoCity {
+
+                    h3 {
+                        font-size: 1.5rem;
+                    }
+
+                    .dayTime {
+                        gap: 0.5rem;
+                        font-size: 0.75rem;
+                    }
+                }
+
+                .weatherInfo {
+                    .rainWindInfo {
+                        gap: 0.5rem;
+                        width: 100%;
+                        font-size: 0.75rem;
+
+                        img {
+                            width: 32px;
+                        }
+                    }
+                }
+            }
+
+            .infoBlockTwotomorr {
+                gap: 1rem;
+                width: 50%;
+                max-width: 50%;
+                padding: 1rem;
+                border-radius: 0.5rem;
+
+                .head p {
+                    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+                    font-size: 0.7rem;
+                }
+
+                .temperInfo {
+                    gap: 0.5rem;
+
+                    img {
+                        width: 64px;
+                    }
+
+                    .mainTemp {
+
+                        img {
+                            width: 24px;
+                        }
+
+                        h3 {
+                            font-size: 1rem;
+                        }
+                    }
+
+                    p {
+                        font-size: 0.75rem;
+                    }
+                }
+            }
+
+            .cardsTommorow {
+                justify-content: flex-start;
+                padding: 0;
+                gap: 0.5rem;
+
+                .cardThisDay {
+                    flex: 0 0 7.5rem;
+                    min-width: 5rem;
+                    padding: 0.2rem;
+                    gap: 0.5rem;
+
+                    .todayImg img {
+                        width: 64px;
+                    }
+
+                    .discTime {
+                        gap: 1rem;
+                        font-size: 0.5rem;
+
+                        p {
+                            padding: 0.5rem;
+                        }
+                    }
+
+                    .temperToday {
+                        gap: 1rem;
+
+                        .mainTemp {
+
+                            img {
+                                width: 24px;
+                            }
+
+                            h3 {
+                                font-size: 1rem;
+                            }
+                        }
+
+                        p {
+                            font-size: 0.5rem;
+                        }
+                    }
+
+                    .weatherTodayInfo {
+                        gap: 25%;
+
+                        .rainWindInfoCard {
+                            gap: 10%;
+
+                            img {
+                                width: 16px;
+                            }
+
+                            p {
+                                font-size: 0.75rem;
+                            }
+                        }
+                    }
+
+                    .sesc {
+                        color: rgba(52, 52, 52, 0.613);
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+        }
+
+        .textError {
+            h2 {
+                text-align: center;
+                color: #353598;
+                font-size: 2.5rem;
+                transform: rotate(-5deg);
+                z-index: 1;
+            }
+
+            img {
+                width: 256px;
+            }
+        }
+    }
+}
