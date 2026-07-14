@@ -115,7 +115,7 @@ export class Hero implements OnInit, OnDestroy {
 
       let countCArd: number = 5;
       
-      if (typeof window !== 'undefined' && window.innerWidth <= 576) countCArd = 4;
+      if (typeof window !== 'undefined' && window.innerWidth <= 576) countCArd = 3;
 
       this.forecastToday = this.forecastData.filter(item => {
         const date: string = item.dt_txt.split(' ')[0];

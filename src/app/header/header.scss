@@ -137,7 +137,7 @@ header {
         backdrop-filter: blur(3px);
 
         .navA {
-            gap: 50%;
+            gap: 25%;
 
             a {
                 font-size: 0.5rem;
@@ -145,10 +145,7 @@ header {
         }
 
         .logo img {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 64px;
+            width: 32px;
         }
 
         .navButt {
